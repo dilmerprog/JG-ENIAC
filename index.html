@@ -3,26 +3,88 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jogo da Velha do Batman</title>
+  <title>Jogo da Ping Pong</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="game-container">
-    <h1>🦇 Gotham Tic-Tac-Toe</h1>
-    <div class="board" id="board">
-      <div class="cell" data-cell></div>
-      <div class="cell" data-cell></div>
-      <div class="cell" data-cell></div>
-      <div class="cell" data-cell></div>
-      <div class="cell" data-cell></div>
-      <div class="cell" data-cell></div>
-      <div class="cell" data-cell></div>
-      <div class="cell" data-cell></div>
-      <div class="cell" data-cell></div>
-    </div>
-    <div class="message" id="message"></div>
-    <button id="restartButton">Reiniciar</button>
-  </div>
+
+  <main class="container">
+    <h1>Ping-Pong</h1>
+    <section>
+      <canvas id="ping"></canvas>
+    </section>
+  </main>
+
+<style>
+  body{
+      height: 0;
+      margin: 0;
+      background-color: black;
+
+    }
+
+    .container {
+      align-items: center;
+      justify-items: center;
+      background-color: #111;
+
+    }
+
+    h1 {
+      color: white;
+            
+    }
+
+    
+    canvas {
+      background-color: #1d1c1c;
+      width: 90vw;
+      height: 80vh;
+      max-width: 900px;
+      max-height: 550px;
+      border-radius: 20px;
+      border: 3px solid white;
+    }
+</style>
+
+  <script>
+    const canvas = document.getElementById("ping");
+    const pong = canvas.getContext("2d");
+
+    // Define tamanho real do canvas baseado no tamanho exibido (CSS)
+    canvas.width = canvas.clientWidth;
+    canvas.height = canvas.clientHeight;
+
+    function desenharMesa() {
+   // Fundo preto (mesa)
+    pong.fillStyle = "black";
+    pong.fillRect(0, 0, canvas.width, canvas.height);  
+
+    // linha central branca
+    pong.strokeStyle = "white"
+    pong.lineWidth = 2;
+    pong.beginPath();
+    pong.moveTo(canvas.width / 2, 0);
+    pong.lineTo(canvas.width / 2, canvas.height);
+    pong.stroke()
+
+
+
+    // Círculo central
+      pong.beginPath();
+      pong.arc(canvas.width / 2, canvas.height / 2, canvas.height / 10, 0, 2 * Math.PI);
+      pong.stroke();
+    }
+
+    desenharMesa(); // chama a função para desenhar
+
+
+
+
+
+
+  </script>
+  
   <script src="script.js"></script>
 </body>
 </html>
