@@ -1,23 +1,35 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ping Pong Menu</title>
-    <link rel="stylesheet" href="fashion.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ping Pong Menu</title>
+  <link rel="stylesheet" href="fashion.css" />
 </head>
 <body>
-    <div class="background">
-        <div class="menu-container">
-            <h1 class="title">PING PONG</h1>
-            <p class="subtitle">CODEFORGE</p>
-            <button onclick="startCampaing()">CAMPANHA</button>
-            <button onclick="openOptions()">OPÇÕES</button>
-            <button onclick="showCredits()">CREDITOS</button>
-            <button onclick="exitGame()">SAIR</button>
-        </div>
-    </div>
+  <!-- Sidebar fixa -->
+  <div class="sidebar">
+    <h2>PING PONG</h2>
+    <ul>
+      <li><a href="#">🏠 Início</a></li>
+      <li><a href="#">🎮 Campanha</a></li>
+      <li><a href="#">⚙️ Opções</a></li>
+      <li><a href="#">💳 Créditos</a></li>
+      <li><a href="#">🚪 Sair</a></li>
+    </ul>
+  </div>
 
-    <script src="auto.js"></script>
+  <!-- Conteúdo principal com menu central -->
+  <div class="main-content">
+    <div class="menu-central">
+      <h1>CODEFORGE</h1>
+      <button>CAMPANHA</button>
+      <button>OPÇÕES</button>
+      <button>CRÉDITO</button>
+      <button>SAIR</button>
+    </div>
+  </div>
+
+  <script src="auto.js"></script>
 </body>
 </html>
