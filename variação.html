@@ -1,0 +1,208 @@
+body {
+    background: linear-gradient(#1a001a, #330033);
+    font-family: 'Press Start 2P', monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    color: white;
+  }
+  
+  .console {
+    border: 8px solid #00ff99;
+    border-radius: 20px;
+    padding: 20px;
+    background: #000;
+    width: 900px;
+    box-shadow: 0 0 30px #00ffcc;
+    text-align: center;
+  }
+  
+  .console-header {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #00ffcc;
+    text-shadow: 1px 1px #333;
+  }
+  
+  button {
+    font-family: 'Press Start 2P', monospace;
+    background-color: #222;
+    border: 3px solid #00ffcc;
+    padding: 10px 20px;
+    margin: 10px;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #00ffcc;
+    color: #000;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  canvas {
+    background: #000;
+    border: 2px solid #fff;
+    margin-top: 20px;
+  }
+  
+  .back-btn {
+    margin-top: 10px;
+  }
+
+const canvas = document.querySelector("canvas");
+const ctx = canvas.getContext("2d");
+
+canvas.width = 800;
+canvas.height = 600;
+
+// JOGADORES
+const paddleWidth = 15;
+const paddleHeight = 100;
+const player = {
+  x: 10,
+  y: canvas.height / 2 - paddleHeight / 2,
+  color: "purple",
+  score: 0,
+};
+const opponent = {
+  x: canvas.width - paddleWidth - 10,
+  y: canvas.height / 2 - paddleHeight / 2,
+  color: "blue",
+  score: 0,
+};
+
+// BOLINHA
+const ball = {
+  x: canvas.width / 2,
+  y: canvas.height / 2,
+  size: 12,
+  speedX: 5,
+  speedY: 5,
+  color: "white",
+};
+
+// MOVIMENTO DO JOGADOR
+document.addEventListener("mousemove", (e) => {
+  const rect = canvas.getBoundingClientRect();
+  const mouseY = e.clientY - rect.top;
+  player.y = mouseY - paddleHeight / 2;
+});
+
+// MOVIMENTO DO OPONENTE (simples IA)
+function moveOpponent() {
+  const target = ball.y - paddleHeight / 2;
+  opponent.y += (target - opponent.y) * 0.05;
+}
+
+// DESENHAR RAQUETE ARREDONDADA
+function drawRoundedPaddle(x, y, width, height, color) {
+  ctx.fillStyle = color;
+
+  // Corpo da raquete
+  ctx.fillRect(x, y + 10, width, height - 20);
+
+  // Topo arredondado
+  ctx.beginPath();
+  ctx.arc(x + width / 2, y + 10, width / 2, Math.PI, 0);
+  ctx.fill();
+
+  // Base arredondada
+  ctx.beginPath();
+  ctx.arc(x + width / 2, y + height - 10, width / 2, 0, Math.PI);
+  ctx.fill();
+}
+
+// DESENHAR BOLA
+function drawBall() {
+  ctx.fillStyle = ball.color;
+  ctx.beginPath();
+  ctx.arc(ball.x, ball.y, ball.size / 2, 0, Math.PI * 2);
+  ctx.fill();
+}
+
+// DESENHAR PLACAR
+function drawScore() {
+  ctx.fillStyle = "white";
+  ctx.font = "36px Arial";
+  ctx.textAlign = "center";
+  ctx.fillText(`${player.score}  |  ${opponent.score}`, canvas.width / 2, 50);
+}
+
+// RESETAR BOLA APÓS GOL
+function resetBall() {
+  ball.x = canvas.width / 2;
+  ball.y = canvas.height / 2;
+  ball.speedX *= -1;
+  ball.speedY = 5 * (Math.random() > 0.5 ? 1 : -1);
+}
+
+// ATUALIZAR POSIÇÕES
+function update() {
+  // Movimento da bolinha
+  ball.x += ball.speedX;
+  ball.y += ball.speedY;
+
+  // Colisão com topo ou base
+  if (ball.y <= 0 || ball.y >= canvas.height) {
+    ball.speedY *= -1;
+  }
+
+  // Colisão com jogador
+  if (
+    ball.x <= player.x + paddleWidth &&
+    ball.y >= player.y &&
+    ball.y <= player.y + paddleHeight
+  ) {
+    ball.speedX *= -1;
+    ball.x = player.x + paddleWidth;
+  }
+
+  // Colisão com oponente
+  if (
+    ball.x + ball.size >= opponent.x &&
+    ball.y >= opponent.y &&
+    ball.y <= opponent.y + paddleHeight
+  ) {
+    ball.speedX *= -1;
+    ball.x = opponent.x - ball.size;
+  }
+
+  // Pontuação
+  if (ball.x <= 0) {
+    opponent.score++;
+    resetBall();
+  }
+
+  if (ball.x + ball.size >= canvas.width) {
+    player.score++;
+    resetBall();
+  }
+
+  moveOpponent();
+}
+
+// DESENHAR CENA
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  drawRoundedPaddle(player.x, player.y, paddleWidth, paddleHeight, player.color);
+  drawRoundedPaddle(opponent.x, opponent.y, paddleWidth, paddleHeight, opponent.color);
+  drawBall();
+  drawScore();
+}
+
+// LOOP DO JOGO
+function gameLoop() {
+  update();
+  draw();
+  requestAnimationFrame(gameLoop);
+}
+
+gameLoop();
+
