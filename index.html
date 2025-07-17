@@ -11,14 +11,18 @@
     <!-- 🔵 INÍCIO DO MENU LATERAL -->
      <link rel="stylesheet" href="fashion.css">
   <div class="sidebar">
-    <h2>PING PONG</h2>
+    <h2 class="pingpong-title">
+      <img src="img/pingpong-icon.jpeg" class="pingpong" alt="icon" />
+      PING PONG
+      <img src="img/pingpong-icon.jpeg" class="pingpong" alt="icon" />
+    </h2>
     <p class="subtitle">CODEFORGE</p>
     <ul>
-      <li><a href="#" onclick="alert('Você clicou em Início')">🏠 Início</a></li>
-      <li><a href="#" onclick="alert('Modo Campanha em breve!')">🎮 Campanha</a></li>
-      <li><a href="#" onclick="alert('Abrindo Opções')">⚙️ Opções</a></li>
-      <li><a href="#" onclick="alert('Créditos do jogo')">💳 Créditos</a></li>
-      <li><a href="#" onclick="alert('Você saiu do jogo')">🚪 Sair</a></li>
+      <!-- Removido: <li><a href="#" onclick="alert('Você clicou em Início')">🏠 Início</a></li> -->
+      <li><a href="#" class="menu-link campanha" onclick="alert('Modo Campanha em breve!')">🎮 Campanha</a></li>
+  <li><a href="#" class="menu-link opcoes" onclick="alert('Abrindo Opções')">⚙️ Opções</a></li>
+  <li><a href="#" class="menu-link creditos" onclick="alert('Créditos do jogo')">💳 Créditos</a></li>
+  <li><a href="#" class="menu-link sair" onclick="alert('Você saiu do jogo')">🚪 Sair</a></li>
     </ul>
   </div>
   <!-- 🔵 FIM DO MENU LATERAL -->

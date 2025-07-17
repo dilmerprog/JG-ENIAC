@@ -58,3 +58,89 @@ body {
   border-radius: 12px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
+
+.subtitle{
+  text-align: center;
+  font-size: 14px;
+  color: #ccc;
+  margin-top: -20px;
+  margin-bottom: 25px;
+  letter-spacing: 1.5px;
+  font-weight: bold;
+}
+
+.pingpong-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* Espaçamento entre os elementos */
+}
+
+.pingpong-title span {
+  font-size: 22px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.pingpong {
+  width: 24px;
+  height: 24px;
+}
+
+/* começo da animação */
+.menu-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 4px;
+  transition: 0.3s ease-in-out;
+}
+
+.menu-link:hover {
+  background-color: #3d3d70;
+}
+
+/* 🎮 Campanha: animação de pulsar */
+.campanha:hover {
+  animation: pulse 0.6s ease-in-out;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* ⚙️ Opções: rotação suave */
+.opcoes:hover {
+  animation: rotateIcon 0.6s ease-in-out;
+}
+
+@keyframes rotateIcon {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(3deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* 💳 Créditos: brilho neon */
+.creditos:hover {
+  box-shadow: 0 0 10px #00ffe0, 0 0 20px #00ffe0;
+  text-shadow: 0 0 5px #00ffe0;
+}
+
+/* 🚪 Sair: leve vibração */
+.sair:hover {
+  animation: shake 0.3s;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-3px); }
+  50% { transform: translateX(3px); }
+  75% { transform: translateX(-2px); }
+  100% { transform: translateX(0); }
+}
+/* final da animação */
