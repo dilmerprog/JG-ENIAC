@@ -5,8 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ping Pong</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="menu.css">
+  <link rel="stylesheet" href="menu.js">
 </head>
 <body>
+
+    <!-- 🔵 INÍCIO DO MENU LATERAL -->
+  <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+  <aside class="sidebar">
+    <h2 class="pingpong-title">
+      <img src="img/pingpong-icon.jpeg" class="pingpong" alt="icon" />
+      PING PONG
+      <img src="img/pingpong-icon.jpeg" class="pingpong" alt="icon" />
+    </h2>
+    <p class="subtitle">CODEFORGE</p>
+    <ul>
+      <!-- Removido: <li><a href="#" onclick="alert('Você clicou em Início')">🏠 Início</a></li> -->
+      <li><a href="#" id="btnCampanha" class="menu-link campanha">🎮 Campanha</a></li>
+      <li><a href="#" class="menu-link opcoes" onclick="alert('Abrindo Opções')">⚙️ Opções</a></li>
+      <li><a href="#" class="menu-link creditos" onclick="alert('Créditos do jogo')">💳 Créditos</a></li>
+      <li><a href="#" id="btnSair" class="menu-link sair" onclick="alert('Você saiu do jogo')">🚪 Sair</a></li>
+    </ul>
+  </aside>
+  <!-- 🔵 FIM DO MENU LATERAL -->
+
   <header>
     <h1>Ping Pong</h1>
   </header>
